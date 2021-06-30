@@ -1,0 +1,145 @@
+.day {
+  padding-left: 1rem;
+  padding-top: .5rem;
+  padding-right: 1rem;
+
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  grid-gap: 1rem;
+
+  background: $primaryColor;
+
+  &:not(:first-of-type) {
+    padding-bottom: 2rem;
+  }
+
+  button {
+    padding: 0.5rem 0;
+    border: none;
+
+    color: $white;
+    background: none;
+  }
+
+  p, button {
+    text-transform: uppercase;
+
+    &.text {
+      font-size: 1.6rem;
+      line-height: 1.2;
+    }
+
+    &.temperature {
+      font-size: 2rem;
+      font-weight: 400;
+
+      cursor: pointer;
+    }
+  }
+
+  &.--today {
+    background: rgba($primaryColor, .7);
+
+    padding-top: .8rem;
+    padding-bottom: 0;
+
+    &.--hot {
+      background: rgba($danger, .7);
+    }
+
+    &.--cold {
+      background: rgba($cold, .7);
+    }
+
+    &.--disabled {
+      background: rgba($disabled, .7);
+      filter: blur(0.5px);
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+
+      > p {
+        text-transform: unset;
+        margin-top: 1.3rem;
+        margin-bottom: .75rem;
+
+        font-size: 2rem;
+        font-weight: 500;
+      }
+
+      small {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600;
+        font-size: 1.4rem;
+        line-height: 1.3;
+
+        &:last-of-type {
+          margin-bottom: 2rem;
+        }
+      }
+    }
+
+    .icon {
+      margin-top: .66rem;
+      margin-bottom: .7rem;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: $white;
+      font-size: 17rem;
+
+      @media (max-width: 724px) {
+        font-size: 42vw;
+      }
+    }
+  }
+
+  &.--tomorrow {
+    background: $primaryColor;
+
+    &.--hot {
+      background: $danger;
+    }
+
+    &.--cold {
+      background: $cold;
+    }
+
+    &.--disabled {
+      background: $disabled;
+      filter: blur(0.5px);
+    }
+  }
+
+  &.--after-tomorrow {
+    background: $primaryColorDark1;
+
+    &.--hot {
+      background: darken($hot, 16%);
+    }
+
+    &.--cold {
+      background: darken($cold, 16%);
+    }
+
+    &.--disabled {
+      background: darken($disabled, 16%);
+      filter: blur(0.5px);
+    }
+  }
+
+
+  @media (max-width: 724px) {
+    grid-gap: 0;
+  }
+
+  @media (max-width: 486px) {
+    &:first-of-type {
+      padding-bottom: 2rem;
+    }
+  }
+}

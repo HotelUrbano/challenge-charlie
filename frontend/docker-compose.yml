@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  development:
+    extends:
+      file: ../common-services.yml
+      service: charlieFrontDev
+
+  production:
+    extends:
+      file: ../common-services.yml
+      service: charlieFrontProd

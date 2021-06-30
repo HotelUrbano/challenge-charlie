@@ -1,58 +1,170 @@
-# <img src="https://avatars1.githubusercontent.com/u/7063040?v=4&s=200.jpg" alt="HU" width="24" /> Desafio Charlie
+# Desafio Charlie
+## ✨ O Projeto
+O projeto consiste em uma aplicação React client-side para exibir a previsão do tempo filtrando por localidade ou coordenadas geográficas e uma API em Node que provê a integração com API's de terceiros devido a restrições de CORS presentes nos navegadores.
 
-Construa um microsite responsivo para mostrar a previsão do tempo nas localidades informadas na caixa de texto branca (na imagem de [exemplo](./exemplo.jpg) é o local aonde aparece "Rio de Janeiro, Rio de Janeiro"). Essa caixa de texto deve ser um `input`, aonde o usuário pode trocar a localidade. Com a mudança da localidade, devem ser carregadas as informações de previsão do tempo referentes à nova localidade.
+Veja quais foram os [requisitos para esse desafio](./docs/CHALLENGE.md). 
 
- Logo que a página seja aberta deve ser coletada as coordenadas geográficas do usuário pela API do navegador para então se descobrir o nome da cidade via _reverse geocode_.
+## 📜 Manual de execução
 
-Como fundo de tela deve ser usado a imagem de destaque do Bing. Devem ser mostradas as previsões para: hoje, amanhã e depois de amanhã.
+Para rodar essa aplicação localmente você pode seguir uma das três opções descritas a seguir.
 
-Note que existe um degradê sobreposto na imagem original, na verdade essa cor reflete a temperatura atual do lugar buscado para as três datas. Para temperaturas abaixo de 15ºC deve ser usado tons de azul, para temperaturas acima de 35ºC deve ser usado tons de vermelho e use tons de amarelo para as demais temperaturas. Quando não houver nenhuma localidade escolhida deve ser usado tons de cinza como base para o degradê. Se o usuário clicar em qualquer temperatura, as temperaturas devem ser alteradas de Celsius para Fahrenheit ou de Fahrenheit para Celsius.
+### Opção 1) Rodando com docker compose
 
-A URL da imagem de fundo deve ser extraida da [API do Bing](https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR).
+Requisitos de ambiente:
+- [Docker](https://www.docker.com/products/docker-desktop) versão 20.10.7 ou superior
 
-Para consultar a previsão do tempo, utilize a do [OpenWeather](http://api.openweathermap.org/data/2.5/weather?q={{location_name}}&APPID=7ba73e0eb8efe773ed08bfd0627f07b8) informando o nome da localidade no lugar de `{{location_name}}` usando a app id `7ba73e0eb8efe773ed08bfd0627f07b8`. Caso necessário, crie uma nova conta.
+Após instalar os pré-requisitos, na raiz do projeto você pode rodar o seguinte comando para subir a aplicação:
 
-Para converter latitude e longitude em uma localidade utilize o [OpenCage](https://api.opencagedata.com/geocode/v1/json?q={{latitude}},{{longitude}}&key=c63386b4f77e46de817bdf94f552cddf&language=en) usando a API key `c63386b4f77e46de817bdf94f552cddf`. Caso necessário, crie uma nova conta.
+```sh
+docker compose up
+```
+> Espere subir os 3 containers e pronto, você já pode acessar a aplicação em: http://localhost:3000 😀
 
-Os ícones podem ser encontrados em http://www.alessioatzeni.com/meteocons/.
+**Production Ready:** Se você deseja executar a versão built que vai rodar em produção, apenas entre nas pastas frontend e backend e execute individualmente em cada pasta o comando `docker compose up production`, respectivamente.
 
-O layout deve ser seguido, mas você pode sugerir melhorias. Descreva essas melhorias no README e diga o por que delas. Você ganha pontos extras se essas melhorias forem positivas, ou perde pontos do contrário.
+### Opção 2) Rodando manualmente
 
-## Requisitos
+Requisitos de ambiente:
+- [Node](https://nodejs.org/en/) versão 14.17.1 ou superior
+- [Yarn](https://yarnpkg.com/) versão 1.22.10 ou superior
 
--   Preferencialmente faça em React, mas você pode usar outras bibliotecas ou frameworks (Angular, Vue.js, etc) ou JavaScript puro (Vanilla JS).
--   Para a folha de estilo, você pode usar o que preferir (CSS, SASS, LESS, CSS Modules, CSS-in-JS, etc).
--   Preferencialmente use Webpack. Se preferir, você pode usar [create-react-app](https://github.com/facebook/create-react-app) ou similares. Fazer o próprio setup do Webpack da pontos extras.
--   É interessante que sua aplicação esteja pronta para produção. Criar no Docker um `stage` para produção e um para desenvolvimento da pontos extras.
--   Forkar esse desafio e criar o seu projeto (ou workspace) usando a sua versão desse repositório, tão logo acabe o desafio, submeta um _pull request_.
-    -   Caso você tenha algum motivo para não submeter um _pull request_, crie um repositório privado no Github, faça todo desafio na branch **master** e não se esqueça de preencher o arquivo `pull-request.txt`. Tão logo termine seu desenvolvimento, adicione como colaborador o usuário [`automator-hurb`](https://github.com/automator-hurb) no seu repositório e o deixe disponível por pelo menos 30 dias. **Não adicione o `automator-hurb` antes do término do desenvolvimento.**
-    -   Caso você tenha algum problema para criar o repositório privado, ao término do desafio preencha o arquivo chamado `pull-request.txt`, comprima a pasta do projeto - incluindo a pasta `.git` - e nos envie por email.
--   O código precisa rodar dentro de um container Docker.
--   Para executar seu código, deve ser preciso apenas rodar os seguintes comandos:
-    -   git clone \$seu-fork
-    -   cd \$seu-fork
-    -   comando para instalar dependências
-    -   comando para executar a aplicação
+Primeiro, rode o comando `yarn` dentro das pastas /frontend e /backend para instalar as dependências
 
-## Critério de avaliação
+Após ter as dependências instaladas, para subir o backend, entre na pasta /backend e execute o comando `yarn dev`
 
--   **É executado conforme esperado**: O passo-a-passo pedido para rodar a aplicação funciona?
--   **Organização do código**: Separação de módulos e organização do projeto (back-end e front-end).
--   **Clareza**: O README explica de forma resumida qual é o problema e como pode rodar a aplicação?
--   **Assertividade**: A aplicação está fazendo o que é esperado? Se tem algo faltando, o README explica o porquê?
--   **Legibilidade do código** É fácil ler e entender o código? Existem muitas variáveis/funções com nome enigmático? Comentários no código ajudam a explicar o fluxo?
--   **Segurança**: Existe alguma vulnerabilidade clara?
--   **Cobertura de testes** Qualidade e cobertura dos testes (não esperamos cobertura completa).
--   **Histórico de commits** Qualidade e estrutura dos commits.
--   **UX**: A interface é de fácil uso e auto-explicativa? As rotas/métodos da API são intuitivos?
--   **Escolhas técnicas**: A escolha das bibliotecas, arquitetura etc, é a melhor escolha para a aplicação?
+Para o frontend é praticamente a mesma coisa, então entre na pasta /frontend e execute o comando `yarn dev`
 
-## Dúvidas
+> Espere a aplicação subir e pronto, você já pode acessar a aplicação em: http://localhost:3000 😀
 
-Quaisquer dúvidas que você venha a ter, consulte as [_issues_](https://github.com/HurbCom/challenge-charlie/issues) para ver se alguém já não a fez e caso você não ache sua resposta, abra você mesmo uma nova issue!
+**Production Ready:** Se você deseja executar a versão built que vai rodar em produção, apenas entre nas pastas frontend e backend e execute individualmente em cada pasta o comando `yarn build` e após `yarn start`, respectivamente.
 
-Boa sorte e boa viagem! ;)
+### Opção 3) Rodando com docker run
 
-<p align="center">
-  <img src="ca.jpg" alt="Challange accepted" />
-</p>
+Requisitos de ambiente:
+- [Docker](https://www.docker.com/products/docker-desktop) versão 20.10.7 ou superior
+
+Essa é pra quem gosta de ativar o modo raiz nível 4 😅 ou pra quando houver alguma restrição à usar o compose. Mas se você só quer rodar local mesmo recomendo usar a opção 1.
+
+Primeiro precisaremos fazer a build da imagem do backend, pra isso rode:
+
+```sh
+docker build --file Dockerfile.back --tag backend --target back_development .
+```
+
+Agora vamos precisar repetir o mesmo processo mas agora para gerar a build da imagem frontend:
+
+```sh
+docker build --file Dockerfile.front --tag frontend --target front_development . 
+```
+
+Opcionalmente você pode subir uma instância de redis com o seguinte comando:
+```sh
+docker run --name charlieRedis  -p 6379:6379 -d redis redis-server --bind '0.0.0.0' 
+```
+> Caso você não suba essa instância a aplicação funcionará normalmente, porém sem os benefícios na velocidade da resposta da API com cache.
+
+Após finalizar as builds, está na hora de subir os containers.
+
+Para subir o backend, na raiz do projeto execute:
+```sh
+docker run -it --rm -v ${PWD}/backend:/app -v /app/node_modules -p 3333:3333 -e REDIS_HOST=host.docker.internal -e NODE_ENV=development backend
+```
+
+E por fim, para subir o frontend, na raiz do projeto abra outro terminal e execute:
+```sh
+docker run -it --rm -v ${PWD}/frontend:/app -v /app/node_modules -p 3000:3000 -e CHOKIDAR_USEPOLLING=true -e NODE_ENV=development frontend
+```
+
+> Espere subir os 2 containers e pronto, você já pode acessar a aplicação em: http://localhost:3000 😀
+
+
+**Production Ready:** Se você deseja executar a versão built que vai rodar em produção, apenas troque o --target para `back_production` ou `front_production` quando for gerar a imagem, o resto do processo é o mesmo.
+
+## 🕵️ Vulnerabilidades
+
+- Não foi implementado nenhuma proteção a nível de aplicação contra ataques DDOS
+  - Após realizar o deploy, seria importante restringir o CORS apenas para o domínio em que o site estivesse disponível para evitar que "redes zumbi" de botnets sejam usadas pra esse tipo de ataque contra nossa API.
+- Por utilizar as bibliotecas em suas versões mais atualizadas, comandos como yarn audit não retornaram nenhuma vulnerábilidade, por isso é importante sempre manter as bibliotecas sempre atualizadas.
+
+## ⌛ Tempo decorrido para execução das tarefas
+
+> Tempo levado para finalizar: 42h 32m
+
+- Configurar estrutura inicial do projeto (pastas + scripts webpack + testes) - 8h 15m
+
+- Adicionar redis para cache de resposta (invalidar a cada uma hora)  - 1h
+
+- Implementar design dos componentes (responsivo) - 6h 24m 
+
+- Integração com api Bing para obter plano de fundo - 1h 40m
+
+- Trocar ícone com base na classificação - 35m
+
+- Integração com API OpenWeather/OpenCage para dados do clima + troca para fahrenheit. 16h 30m
+
+- Obter coordenadas do browser e usar para fazer a primeira consulta ou não fazer a consulta - 1h
+
+- Criar funcionalidade para o input de cidade - 1h 30m
+
+- Abrir popup pedindo permissão para geolocalizaçao - 40m
+
+- Fazer aplicação toda rodar em Docker com um simples comando - 3h
+
+- Melhorar Readme.md - 2h
+
+## Pontos tratados que considero importantes
+
+### Resiliência e tolerância a falhas
+
+- Se a aplicação backend não conseguir se conectar com o Redis para aumentar a performance nos endpoints, o fluxo continua normalmente obtendo os dados das API's OpenCage e OpenWeather.
+
+### Melhorias de UX
+
+- [implementado] Quando o usuário buscar por uma cidade, foi adicionado um efeito de rotação no ícone à esquerda do input e uma mensagem logo abaixo dizendo o status da busca (se não encontrou, se está buscando etc.).
+
+- [sugestão] O contraste da cor branca da fonte sobre o fundo amarelo no tom especificado no design não está ideal e pode prejudicar a leitura do usuário, sugiro uma melhoria na cor desse amarelo ou alteração na cor da fonte e utilizar uma ferramenta como a [contrastchecker.com](https://contrastchecker.com/) para verificar se está atendendo as normas.
+
+- [sugestão] As cores vermelho, azul e amarelo podem ser difíceis de trabalhar para não prejudicar a leitura de pessoas com daltonismo, preencher os fundos com essas cores não parece ser uma boa opção.
+
+- [sugestão] Um input deve parecer um input, nos testes que realizei com pessoas próximas ninguém percebeu que o lugar onde altera o nome da cidade era um input, parece mais um "header" com um título apenas, o que prejudica a usabilidade.
+
+### Escolhas Técnicas
+
+- Utilizei o próprio Context API do React ao invés de usar Redux porque se trata de uma aplicação pequena e não houve necessidade de espelhar um estado em diversos componentes, usar Redux nesse projeto só aumentaria a complexidade.
+
+- Utilizei Typescript como linguagem de programação no front e no back para utilizar das de features mais novas e ter o apoio do intelisense durante o desenvolvimento, evitando erros e comportamentos indesejados.
+
+- Mantive a arquitetura bem simples, utilizando no backend alguns patterns do Domain Drive Design (DDD) como Service Pattern, controllers, middlewares, etc. No frontend usando Custom Hooks e na estilização mantendo ao máximo próximo dos padrões ITCSS e RSCSS.
+
+### Testes unitários e testes de integração
+
+Para a maioria dos casos eu utilizei da prática TDD criando os testes antes de criar a funcionalidade. Tanto no frontend quanto no backend implementei os testes que ao meu ver faziam sentido sem implementados.
+
+- Para gerar cobertura de testes rode `yarn test --coverage`
+
+
+**Cobertura de testes do back-end:**
+
+<img src="./docs/assets/coverage-backend.png" style="margin: auto; width:100%;">
+
+---
+
+**Cobertura de testes do front-end:**
+<img src="./docs/assets/coverage-frontend.png" style="margin: auto; width:100%;">
+
+## Instruções para desenvolvedores
+
+Selecionei algumas informações importantes e adicionei no arquivo [CONTRIBUTING.md](./docs/CONTRIBUTING.md) para o próximo que for manutenir ou implementar algo nesse projeto.
+
+## Considerações finais
+
+- Achei interessante criar o projeto react com webpack, fica bem mais flexível, já havia usado webpack mas na época que eu nem usava react ainda, até o momento só hávia criado projetos react pra web com o create react-app
+
+- Não encontrei a fonte correta, então selecionei uma semelhante.
+
+- Não descobri por que o modo watch não está funcionando enquanto uso docker, as alterações na maquina são refletidas dentro do docker pelo volume, porém o webpack não re-compila quando ocorre as alterações.
+
+Fico a disposição para tirar dúvidas e sempre estarei aberto a criticas construtivas e sugestões de melhorias, obrigado pela atenção!
+
+Contato: gabrieldnrodrigues@gmail.com
+Linkedin: https://www.linkedin.com/in/gabrieldissotti/

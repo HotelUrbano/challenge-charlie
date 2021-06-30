@@ -1,0 +1,55 @@
+$font-size: 1rem;
+$line-height-base: 1.5;
+
+html {
+  font-size: 16px;
+
+  overflow-x: hidden;
+
+  @media (max-width: 724px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 475px) {
+    font-size: 12px;
+  }
+
+  @media (max-width: 399px) {
+    font-size: 10px;
+  }
+
+  @media (max-width: 337px) {
+    font-size: 8px;
+  }
+
+  .layout {
+    max-width: 100vw;
+
+    > .background {
+      position: fixed;
+      z-index: -1;
+
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+
+      transition: opacity 1.5s;
+
+      &.--hidden {
+        opacity: 0;
+      }
+    }
+
+    p, small {
+      color: $grey;
+
+      font-weight: 500;
+
+      font-family: 'Noto Sans JP', sans-serif;
+
+      font-size: $font-size;
+      line-height: $line-height-base;
+    }
+  }
+}
+

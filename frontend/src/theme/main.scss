@@ -1,0 +1,12 @@
+/* presets */
+@import './reset.scss';
+@import './colors.scss';
+@import './fonts.scss';
+@import './icons.scss';
+@import './animations.scss';
+
+/* components */
+@import '@components/Layout/styles.scss';
+
+/* pages */
+@import '@pages/Weather/styles.scss';
